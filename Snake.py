@@ -68,15 +68,19 @@ while not done:
     if next_dir == "down" and direction != "up":
         direction = "down"
 
-    # teleporting
+    # moving
     if direction == "right":
-        head_square[0] = (head_square[0] + 10) % width
+        head_square[0] += 10
     if direction == "left":
-        head_square[0] = (head_square[0] - 10) % width
+        head_square[0] -= 10
     if direction == "up":
-        head_square[1] = (head_square[1] - 10) % height
+        head_square[1] -= 10
     if direction == "down":
-        head_square[1] = (head_square[1] + 10) % height
+        head_square[1] += 10
+
+    # borders and collision
+    if head_square[0] < 0 or head_square[0] >= 800 or head_square[1] < 0 or head_square[1] >= 600:
+        game_over()
 
     new_square = head_square[:]
     squares.append(new_square)
